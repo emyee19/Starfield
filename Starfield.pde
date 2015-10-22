@@ -8,6 +8,8 @@ void setup()
 		{
 			nDoc[i] = new NormalParticle();
 		}
+		nDoc[998] = new JumboParticle();
+		nDoc[999] = new OddballParticle();
 
 
 }
@@ -20,9 +22,11 @@ void draw()
 }
 	
 }
+
+
 class NormalParticle implements Particle
 {
-	double x, y, speed,size, angle;
+	double x, y, speed,mySize, angle;
 	int shade;
 	
 
@@ -32,18 +36,19 @@ class NormalParticle implements Particle
 		y = Math.random() * 250 + 150;
 		angle = Math.random() * 100 * Math.PI;
 		speed = (Math.random() * 3) +3;
-		size = Math.random() * 10 + 1;
+		mySize = Math.random() * 10 + 1;
 	}
 
 	public void move() {
 		x = x + Math.cos(angle)*speed;
 		y = y + Math.sin(angle)*speed;
+		angle+=0.03;
 	}
 
 	public void show() {
 		noStroke();
 		fill((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
-		ellipse((float)x,(float)y,(float)size,(float)size);
+		ellipse((float)x,(float)y,(float)mySize,(float)mySize);
 
 	}
 
@@ -53,31 +58,33 @@ interface Particle
 	public void move();
 	public void show();
 }
-// class OddballParticle implements Particle 
-// {   double x, y, speed,size, angle;
-// 	int shade;
-// 	{ 	x = Math.random() * 250 + 150;
-// 		y = Math.random() * 250 + 150;
-// 		angle = Math.random() * 100 * Math.PI;
-// 		speed = (Math.random() * 3) +3;
-// 		size = Math.random() * 10 + 1;
-// 	}
+class OddballParticle implements Particle 
+{   double x, y, speed,mySize, angle;
+	int shade;
+	{ 	x = ((int)Math.random() * 500) +(int)(Math.random()*3)-1;
+		y = ((int)Math.random() * 500) +(int)(Math.random()*3)-1;
+		angle = Math.random() * 100 * Math.PI;
+		speed = Math.random();
+		mySize = 6;
+		
+	}
 
-// 	public void move() {
-// 		y=mouseY+15;
-// 		x=mouseX-20;
-// 	}
+	public void move() {
+		y=mouseY+15;
+		x=mouseX-20;
+	}
 
-// 	public void show() {
-// 		noStroke();
-// 		fill(0);
-// 		ellipse((int)(Math.random()*500),(int)(Math.random()*500),200,200);	
-//   	}
-// }
+	public void show() {
+		noStroke();
+		fill(0);
+		ellipse((int)(Math.random()*500),(int)(Math.random()*500),20,20);	
+  	}
+}
 class JumboParticle extends NormalParticle 
 {
 	JumboParticle() {
-		size = 50;
+		mySize=50;
 	}
+
 }
 
