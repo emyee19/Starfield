@@ -1,8 +1,9 @@
 Particle [] nDoc;
 
 void setup()
-{   background(255);
+{   
 	size(500,500);
+	background(255);
 	nDoc = new Particle[1000];
 	for (int i=0; i<nDoc.length; i++)
 		{
@@ -14,7 +15,8 @@ void setup()
 
 }
 void draw()
-{	background(255);
+{	
+	background(255);
 	for (int i=0; i<nDoc.length; i++)
 	{
 		nDoc[i].move();
@@ -27,11 +29,11 @@ void draw()
 class NormalParticle implements Particle
 {
 	double x, y, speed,mySize, angle;
-	int shade;
+	int shad;
 	
 
 	NormalParticle() {
-	    shade =color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+	    shad =color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
 		x = Math.random() * 250 + 150;
 		y = Math.random() * 250 + 150;
 		angle = Math.random() * 100 * Math.PI;
@@ -60,7 +62,8 @@ interface Particle
 }
 class OddballParticle implements Particle 
 {   double x, y, speed,mySize, angle;
-	int shade;
+	//int shade;
+	OddballParticle()
 	{ 	x = ((int)Math.random() * 500) +(int)(Math.random()*3)-1;
 		y = ((int)Math.random() * 500) +(int)(Math.random()*3)-1;
 		angle = Math.random() * 100 * Math.PI;
